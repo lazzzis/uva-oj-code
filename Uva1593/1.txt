@@ -1,0 +1,13 @@
+  start:  integer;    // begins here
+stop: integer; //  ends here  
+ s:  string;   
+c:   char; // temp
+asdf a
+sdf
+as f
+sdf 
+sda
+f sd
+ f
+ sd f sdfsdfsdfasd
+ dgasdgasdfsdfsdfasdfsdfsdfsdfsdaffsdafasdfasdfasfasdfasdfasdfas d
