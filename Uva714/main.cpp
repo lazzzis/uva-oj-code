@@ -63,17 +63,16 @@ void output(int p) {
 }
 
 void work() {
+    // if left is initialized with 0, some problems will occur
     LL left = maxC, right = sum, mid;
     while (right > left) {
         mid = (right + left) >> 1;
-        // cout << left << " " << right << " " << mid << endl;
         if (is_possile(mid)) {
             right = mid;
         } else {
             left = mid + 1;
         }
     }
-    // cout << right << endl;
     output(right);
 }
 
