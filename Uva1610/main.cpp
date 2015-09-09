@@ -8,8 +8,7 @@
 using namespace std;
 
 const int MAXN = 1000 + 50;
-string name[MAXN];
-string ans;
+string name[MAXN], ans;
 int N;
 
 bool read() {
