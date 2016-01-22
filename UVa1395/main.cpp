@@ -1,3 +1,7 @@
+/*
+ * AC @ 22nd Jan 2016
+ * Run Time : 0.033s
+ */
 #include <iostream>
 #include <cstring>
 #include <vector>
