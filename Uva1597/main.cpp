@@ -17,20 +17,11 @@ struct Did{
         }
         return d1.ln > ln;
     }
+    Did(int p, int l, string lne): passage(p), ln(l), line(lne) {}
 };
 
-Did newDid(int passage, int ln, string line) {
-    Did d;
-    d.passage = passage;
-    d.ln = ln;
-    d.line = line;
-    return d;
-}
-
 map<string, set<Did>> words;
-
 vector<string> passages;
-
 int N;
 
 void init() {
@@ -42,11 +33,7 @@ void gen_bucket(string line, int passage, int ln) {
     set <string> ln_words; // one line might contain multiple identical words.
     string ori_line = line;
     for (int j = 0; j < line.size(); j ++) {
-        if (isalpha(line[j])) {
-            line[j] = tolower(line[j]);
-        } else {
-            line[j] = ' ';
-        }
+        line[j] = isalpha(line[j]) ? tolower(line[j]) : ' ';
     }
     stringstream ss(line);
     string word;
@@ -58,7 +45,7 @@ void gen_bucket(string line, int passage, int ln) {
             set<Did> s;
             words[*it] = s;
         }
-        words[*it].insert(newDid(passage, ln, ori_line));
+        words[*it].insert(Did(passage, ln, ori_line));
     }
 }
 
