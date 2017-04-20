@@ -3,6 +3,7 @@
 # Customary
 
 *.dev.*
+*.out.*/
 
 # Java
 
