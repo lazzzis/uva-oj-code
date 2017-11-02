@@ -41,23 +41,24 @@ Node createNode (int v, int k, int c, int l) {
 }
 
 int N;
-int vis[1000 + 50][1000 * 100 + 5];
+int dp[1000 + 50];
 Node nodes[1000 + 5];
 
-int solve (int n, int num) {
-    if (vis[n][num] != -1) {
-        return vis[n][num];
+int solve () {
+    for (int i = 0; i < N; i ++) {
+        dp[i] = 99999999;
     }
-    if (n == N - 1) {
-        vis[n][num] = nodes[n].c * (num + nodes[n].l) + nodes[n].k;
-        return vis[n][num];
+    dp[0] = nodes[0].k + nodes[0].c * nodes[0].l;
+    for (int i = 1; i < N; i ++) {
+        int total = 0;
+        for (int j = i - 1; j >= 0; j--) {
+            total += nodes[j + 1].l;
+            dp[i] = min(dp[i], dp[j] + total * nodes[i].c + nodes[i].k);
+        }
+        total += nodes[0].l;
+        dp[i] = min(dp[i], 0 + total * nodes[i].c + nodes[i].k);
     }
-    vis[n][num] = min(
-        solve(n + 1, num + nodes[n].l),
-        solve(n + 1, 0) + nodes[n].k + (num + nodes[n].l) * nodes[n].c
-    );
-    // cout << n << " " << num << " " << vis[n][num] << endl;
-    return vis[n][num];
+    return dp[N - 1];
 }
 
 int main(int argc, char const *argv[]) {
@@ -75,7 +76,6 @@ int main(int argc, char const *argv[]) {
             return a.v < b.v;
         });
 
-        memset(vis, -1, sizeof(vis));
-        cout << solve(0, 0) << endl;
+        cout << solve() << endl;
     }
 }
